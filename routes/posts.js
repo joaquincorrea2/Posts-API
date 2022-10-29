@@ -1,22 +1,24 @@
 const express = require("express");
-const Post = require("../models/posts");
 const routerPosts = express.Router();
 
-// Rutas de INDEX
-routerPosts.get("/posts", async (req, res) => {
-  try {
-    const posts = await Post.find({});
+const {
+  getPosts,
+  newPost,
+  createPost,
+  showPost,
+  deletePost,
+  showPostFormEdit,
+} = require("../controllers/posts");
 
-    //res.json(posts);
+// Rutas de Index
+routerPosts.get("/posts", getPosts);
+routerPosts.get("/posts/new", newPost);
+routerPosts.get("/posts/edit/:id", showPostFormEdit);
+routerPosts.get("/posts/:slug", showPost);
 
-    res.render("get", {
-      title,
-      posts,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
+routerPosts.post("/posts", createPost);
+
+routerPosts.delete("/posts/:id", deletePost);
 
 module.exports = {
   routerPosts,
