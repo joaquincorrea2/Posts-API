@@ -8,9 +8,13 @@ const {
   showPost,
   deletePost,
   showPostFormEdit,
+  traerPostCards,
 } = require("../controllers/posts");
 
 // Rutas de Index
+
+routerPosts.get("/", traerPostCards);
+
 routerPosts.get("/posts", getPosts);
 routerPosts.get("/posts/new", newPost);
 routerPosts.get("/posts/edit/:id", showPostFormEdit);

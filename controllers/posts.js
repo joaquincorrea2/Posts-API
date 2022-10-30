@@ -1,6 +1,22 @@
 const { response } = require("express");
 const Post = require("../models/posts");
 
+// Mostrar los post en cards
+
+const traerPostCards = async (req, res = response) => {
+  try {
+    const posts = await Post.find({}).lean(); // Me deja un obj puro de JS
+    //console.log(posts)
+    const title = "InfoBlog - Inicio";
+    res.status(200).render("home", {
+      title,
+      posts,
+    });
+  } catch (error) {
+    console.log("Error INDEX", error);
+  }
+};
+
 // INDEX
 const getPosts = async (req, res = response) => {
   try {
@@ -85,4 +101,5 @@ module.exports = {
   createPost,
   newPost,
   showPostFormEdit,
+  traerPostCards,
 };

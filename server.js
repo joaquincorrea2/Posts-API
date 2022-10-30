@@ -1,11 +1,15 @@
 // const app = require('express')()
 const express = require("express");
-const { engine } = require("express-handlebars");
 const methodOverride = require("method-override");
+const { engine } = require("express-handlebars");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const passport = require("passport");
 require("dotenv").config();
+require("./config/passport");
 
 const { dbConnection } = require("./database/config");
-const routerIndex = require("./routes");
+const { routerAuth } = require("./routes/auth");
 const { routerDev } = require("./routes/db");
 const { routerPosts } = require("./routes/posts");
 
@@ -25,9 +29,19 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride("_method"));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.DB_LOCAL_URI }),
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
-app.use("/", routerIndex);
+app.use("/", routerAuth);
 app.use("/", routerDev); // Solo para desarrollo
 app.use("/", routerPosts);
 
