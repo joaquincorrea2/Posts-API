@@ -1,55 +1,78 @@
-<div class="col">
-  <form action="/auth/signup" method="POST">
-    {{! Nombre }}
-    <div class="form-control">
-      <label for="name" class="form-label">Nombre</label>
-      <input
-        type="text"
-        class="form-control"
-        id="name"
-        name="name"
-        placeholder="Ingrese su nombre"
-      />
-    </div>
+{{#each errors}}
+  <div
+    class="alert alert-danger alert-dismissible fade show margin-mas-grande"
+    role="alert"
+  >
+    <strong>{{this.msg}}</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+{{/each}}
 
-    {{! Correo }}
-    <div class="form-control">
-      <label for="email" class="form-label">Correo Electronico</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        name="email"
-        placeholder="Ingrese su correo electronico"
-      />
-    </div>
+{{#if todo_error}}
+  {{todo_error}}
+{{/if}}
 
-    {{! Password }}
-    <div class="form-control">
-      <label for="password" class="form-label">Correo Electronico</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-        placeholder="Ingrese su contraseña"
-      />
-    </div>
+<div class="popup edit">
+  <div class="col fondo bg-primary">
+    <form action="/auth/signup" method="POST">
+      {{! Nombre }}
+      <div class="form-control">
+        <label for="name" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Ingrese su nombre"
+          value={{name}}
+        />
+      </div>
 
-    {{! Confirm Password }}
-    <div class="form-control">
-      <label for="confirm_password" class="form-label">Correo Electronico</label>
-      <input
-        type="password"
-        class="form-control"
-        id="confirm_password"
-        name="confirm_password"
-        placeholder="Ingrese repita su contraseña"
-      />
-    </div>
+      {{! Correo }}
+      <div class="form-control mt-2">
+        <label for="email" class="form-label">Correo Electronico</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Ingrese su correo electronico"
+          value={{email}}
+        />
+      </div>
 
-    <button class="btn btn-primary">
-      Signup
-    </button>
-  </form>
+      {{! Password }}
+      <div class="form-control mt-2">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Ingrese su contraseña"
+        />
+      </div>
+
+      {{! Confirm Password }}
+      <div class="form-control mt-2">
+        <label for="confirm_password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="confirm_password"
+          name="confirm_password"
+          placeholder="Ingrese repita su contraseña"
+        />
+      </div>
+
+      <button class="btn btn-primary mt-2">
+        Signup
+      </button>
+    </form>
+  </div>
 </div>

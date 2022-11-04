@@ -1,3 +1,106 @@
 * {
   font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+}
+
+#btn-modal {
+  display: none;
+}
+
+#btn-modal:checked ~ .modal {
+  display: flex;
+  align-items: center;
+  background-color: rgba(144, 148, 150, 0.8);
+}
+
+.label-modal {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__cerrar {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.centrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/*navbar*/
+
+.nav {
+  margin: 15px 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.margin {
+  margin-top: 55px;
+}
+
+.margin-mas-grande {
+  margin-top: 70px;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.popup {
+  width: 50vw;
+  height: 100vh;
+  margin: auto;
+}
+
+.edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fondo {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/*boton home*/
+.boton-arriba {
+  height: 40px;
+  width: 40px;
+
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-angles-up {
+  color: white;
+}
+
+a {
+  text-decoration: none;
 }

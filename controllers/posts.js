@@ -52,7 +52,9 @@ const deletePost = async (req, res = response) => {
   try {
     await Post.findByIdAndDelete(req.params.id);
 
-    res.redirect("/posts");
+    setTimeout(() => {
+      res.redirect("/posts");
+    }, 1000);
   } catch (error) {
     console.log("Error DELETE", error);
   }

@@ -12,18 +12,20 @@ const signup = async (req, res = response) => {
   const { name, email, password, confirm_password } = req.body;
 
   if (password !== confirm_password) {
-    console.log("Password do not match.");
-    errors.push({ msg: "Password do not match." });
+    console.log("La contraseña no machea.");
+    errors.push({ msg: "La contraseña no machea." });
   }
 
   if (password.length < 4) {
-    console.log("Password must be at least 4 characters");
-    errors.push({ msg: "Password must be at least 4 characters" });
+    console.log("La contraseña debe tener al menos 4 caracteres");
+    errors.push({ msg: "La contraseña debe tener al menos 4 caracteres" });
   }
 
   if (errors.length > 0) {
     return res.render("auth/signup", {
       errors,
+      name,
+      email,
     });
   }
 
@@ -35,6 +37,7 @@ const signup = async (req, res = response) => {
   const newUser = new Auth({ name, email, password });
   newUser.password = await newUser.passwordEncrypt(password);
   await newUser.save();
+  req.flash("todo_ok", "Se registró correctamente");
   res.redirect("/auth/signin");
 };
 

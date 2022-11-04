@@ -1,11 +1,14 @@
-{{#each posts}}
-  <div class="col-lg-4 col-md-6 col-12">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{this.title}}</h5>
-        <p class="card-text">{{this.body}}</p>
-        <a href="#" class="btn btn-primary">Ver más...</a>
+<div class="margin-mas-grande home">
+
+  {{#each posts}}
+    <div class="m-3">
+      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+          <h4 class="card-title">{{this.title}}</h4>
+          <p class="card-text">{{this.body}}</p>
+          <a href="/posts/{{this.slug}}" class="btn btn-info">Ver más...</a>
+        </div>
       </div>
     </div>
-  </div>
-{{/each}}
+  {{/each}}
+</div>

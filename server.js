@@ -7,6 +7,7 @@ const MongoStore = require("connect-mongo");
 const passport = require("passport");
 require("dotenv").config();
 require("./config/passport");
+const flash = require("connect-flash");
 
 const { dbConnection } = require("./database/config");
 const { routerAuth } = require("./routes/auth");
@@ -39,6 +40,14 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.todo_ok = req.flash("todo_ok");
+  res.locals.todo_error = req.flash("todo_error");
+  next();
+});
 
 // Routes
 app.use("/", routerAuth);

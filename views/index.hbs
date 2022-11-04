@@ -1,4 +1,4 @@
-<div class="col">
+<div class="col margin-mas-grande">
   <h2>Listado de Posts</h2>
 
   <hr />
@@ -40,8 +40,8 @@
               Editar
             </a>
 
-            <form action="/posts/{{this._id}}?_method=DELETE" method="POST">
-              <button class="btn btn-danger">
+            <button class="btn btn-danger">
+              <label class="label-modal" for="btn-modal">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -54,9 +54,45 @@
                     d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
                   ></path>
                 </svg>
-                Eliminar
-              </button>
-            </form>
+                Eliminar</label>
+
+            </button>
+
+            <!--Ventana Modal-->
+            <input type="checkbox" id="btn-modal" />
+
+            <div class="modal">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">¿Estas seguro?</h5>
+
+                  </div>
+                  <div class="modal-body">
+                    <p>Post: {{this.body}}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <form
+                      action="/posts/{{this._id}}?_method=DELETE"
+                      method="POST"
+                    >
+                      <button class="btn btn-danger" id="btn-borar">
+                        Si, eliminar
+                      </button>
+                    </form>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      <label class="label-modal" for="btn-modal">Cerrar</label>
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+              <label for="btn-modal" class="modal__cerrar"></label>
+            </div>
 
           </td>
         </tr>

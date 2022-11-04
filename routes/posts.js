@@ -11,18 +11,20 @@ const {
   traerPostCards,
 } = require("../controllers/posts");
 
+const isAuthenticated = require("../middlewares/isAuthenticated");
+
 // Rutas de Index
 
 routerPosts.get("/", traerPostCards);
 
-routerPosts.get("/posts", getPosts);
-routerPosts.get("/posts/new", newPost);
-routerPosts.get("/posts/edit/:id", showPostFormEdit);
-routerPosts.get("/posts/:slug", showPost);
+routerPosts.get("/posts", isAuthenticated, getPosts);
+routerPosts.get("/posts/new", isAuthenticated, newPost);
+routerPosts.get("/posts/edit/:id", isAuthenticated, showPostFormEdit);
+routerPosts.get("/posts/:slug", isAuthenticated, showPost);
 
-routerPosts.post("/posts", createPost);
+routerPosts.post("/posts", isAuthenticated, createPost);
 
-routerPosts.delete("/posts/:id", deletePost);
+routerPosts.delete("/posts/:id", isAuthenticated, deletePost);
 
 module.exports = {
   routerPosts,
