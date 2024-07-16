@@ -11,6 +11,18 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    user: {
+      type: String,
+      required: true,
+    },
+
+    visits: {
+      type: Number,
+      required: true,
+    },
+
+    //para sacar el unique tuve que borrar la coleccion y volver a crearla
+    //TODO:para que se vean los cambios que hago aca tengo que reiniciar el servidor (bash)
     slug: {
       type: String,
       required: true,
@@ -19,6 +31,7 @@ const postSchema = new mongoose.Schema(
   },
   {
     versionKey: false,
+    timestamps: true,
   }
 );
 
@@ -31,5 +44,7 @@ postSchema.pre("validate", function (next) {
   }
   next();
 });
+
+// postSchema.set({ timestamps: true });
 
 module.exports = mongoose.model("Post", postSchema);

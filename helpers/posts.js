@@ -4,7 +4,9 @@ const { faker } = require("@faker-js/faker");
 const generatePost = () => {
   const post = {
     title: faker.lorem.words(6),
-    body: faker.lorem.sentence(12),
+    body: faker.lorem.sentence(300),
+    visits: faker.datatype.number(),
+    user: faker.internet.userName(),
   };
 
   // testear

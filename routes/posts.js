@@ -9,22 +9,34 @@ const {
   deletePost,
   showPostFormEdit,
   traerPostCards,
+  edit,
+  getPostsMoreVisits,
 } = require("../controllers/posts");
-
 const isAuthenticated = require("../middlewares/isAuthenticated");
 
 // Rutas de Index
 
-routerPosts.get("/", traerPostCards);
+//SIN USO
+// routerPosts.get("/", traerPostCards);
+// routerPosts.get("/posts/new", newPost);
+// routerPosts.get("/posts/edit/:id", showPostFormEdit);
 
-routerPosts.get("/posts", isAuthenticated, getPosts);
-routerPosts.get("/posts/new", isAuthenticated, newPost);
-routerPosts.get("/posts/edit/:id", isAuthenticated, showPostFormEdit);
+//EL isAuthenticated ME PROHIBIR DARME LOS DATOS QUE NECESITO DE LA API PERO LA VIEW DE VUE ME LA IMPRIMIR IGUAL
+//CADA VEZ QUE EJECUTO EL isAuthenticated SE EJECUTA EL MID SERV Y ANTES DE ESO DESERIALIZE
+//HOME
+routerPosts.get("/posts", getPosts);
+routerPosts.get("/posts/visits", getPostsMoreVisits);
+
+//
 routerPosts.get("/posts/:slug", isAuthenticated, showPost);
 
-routerPosts.post("/posts", isAuthenticated, createPost);
+routerPosts.post("/posts/create", isAuthenticated, createPost);
+
+routerPosts.put("/posts/:id", isAuthenticated, edit);
 
 routerPosts.delete("/posts/:id", isAuthenticated, deletePost);
+
+//routerPosts.get("/user/posts", getUserPosts);
 
 module.exports = {
   routerPosts,

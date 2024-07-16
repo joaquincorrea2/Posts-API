@@ -11,4 +11,4 @@ function borrar() {
   });
 }
 
-boton.addEventListener("click", borrar);
+// boton.addEventListener("click", borrar);
